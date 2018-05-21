@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="pull-right">
+    Welcome! {{username}}
+  </div>
+  <div class="pull-right">
+    Logout
+  </div>
+</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active">
+        <a routerLink="home">Home</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="speakers">Speaker</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="agenda">Agenda</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="livewebcast">Live Webcast</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

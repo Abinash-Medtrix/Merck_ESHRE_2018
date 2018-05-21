@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="forgotPwd(form)">
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <label for="emailAddr">ENTER YOUR EMAIL ADDRESS</label>
+    <input type="text" class="form-control" id="emailAddr" formControlName="emailAddr">
+    <div class="alert alert-danger" *ngIf="emailAddr.touched && emailAddr.invalid">
+      <div *ngIf="emailAddr.errors.required">Email is Required.</div>
+      <div *ngIf="emailAddr.errors.pattern">Invalid email address.</div>
+      <div *ngIf="emailAddr.errors.emailNotRegistered">Email not registered.Please register yourself.</div>
+    </div>
+  </div>
+  <button class="btn btn-primary mobileWidth smMarginLeft" [disabled]="!form.valid">SUBMIT</button>
+  <div (click)="showLogin()">Back to login</div>
+</form>
