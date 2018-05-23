@@ -8,6 +8,6 @@
       <div *ngIf="emailAddr.errors.emailNotRegistered">Email not registered.Please register yourself.</div>
     </div>
   </div>
-  <button class="btn btn-primary mobileWidth smMarginLeft" [disabled]="!form.valid">SUBMIT</button>
-  <div (click)="showLogin()">Back to login</div>
+  <button class="btn btn-primary mobileWidth2 smMarginLeft" [disabled]="!form.valid">SUBMIT</button>
+  <div (click)="showLogin()" class="backTL">Back to login</div>
 </form>

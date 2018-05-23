@@ -1,60 +1,38 @@
-<div class="container-fluid noPadding ">
-    <div class="bgImg2 fLeft"></div>
+<div class="container-fluid noPadding ipadFix">
+    <div class="bigImg fLeft visible-md visible-lg "></div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 topBar"></div>
-   <!--  <nav class="navbar visible-xs">
-        <div class="container">
-            <div class="navbar-header ">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <i class="fas fa-bars fa-2x"></i>
-        </button>
-                <a class="navbar-brand" href="#">
-                    <img class="img-responsive" src="assets/images/logo.png" alt="logo">
-                </a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#">HOME</a>
-                    </li>
-                    <li>
-                        <a href="#about">SPEAKERS</a>
-                    </li>
-                    <li>
-                        <a href="#contact">AGENDA</a>
-                    </li>
-                    <li>
-                        <a href="#contact">LIVE WEBCAST</a>
-                    </li>
-                </ul>
-            </div>
-            <!--/.nav-collapse 
-        </div>
-    </nav> -->
-    <div class="container-fluid ">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding mdMarginTop">
-            <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 noPadding">
-                <img class="img-responsive" src="assets/images/live.png" alt="live webcast">
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10 noPadding">
-                <h4 class="fontBold purpleColor">Monday, July 2nd 2018</h4>
-                <h4>11:45 - 13:00 (CET)</h4>
-                <br />
-                <h4 class="fontBold purpleColor">LIVE from ESHRE Conference Center</h4>
-                <h4>Barcelona, Spain</h4>
-            </div>
+   
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding smMarginTop mdMarginLeftD">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 noPadding">
+                    <img class="img-responsive" src="assets/images/live.png" alt="live webcast">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                    <h4 class="fontBold purpleColor">Monday, July 2nd 2018</h4>
+                    <h4>11:45 - 13:00 (CET)</h4>
+                    <h4 class="fontBold purpleColor">LIVE from ESHRE Conference Center</h4>
+                    <h4>Barcelona, Spain</h4>
+                </div>
+            </div>
+          
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <h1 class="fontBold">ESHRE 2018<br>
                     <span class="pinkColor">Merck</span>
                     <span class="purpleColor">Symposium</span>
                 </h1>
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 noPadding">
-                <h3 class="purpleColor">How to improve ART efficiency and risk management to shorten time to live birth</h3>
+            <div class="col-xs-12 col-sm-11 col-md-8 col-lg-8 ">
+                <h3 class="purpleColor lapMLeft">How to improve ART efficiency and risk management to shorten time to live birth</h3>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding mdPaddingTop lgMarginTopM">
-                <button class="col-xs-12 col-sm-2 col-md-2 col-lg-2 noPadding signBtn fontBold" [value]="0" (click)="openPopup($event)">SIGN IN</button>
-                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 xsPaddingTop whiteColor text-center"></div>
-                <button class="col-xs-12 col-sm-2 col-md-2 col-lg-2 noPadding signBtn2 fontBold" [value]="1" (click)="openPopup($event)">REGISTER</button>
+                <div class="visible-lg col-lg-1"></div>
+                <div class="col-xs-12 col-sm-11 col-md-2 col-lg-2">
+                    <button class="signBtn fontBold" [value]="0" (click)="openPopup($event)">SIGN IN</button>
+                </div>
+                <div class="col-xs-12 col-sm-11 col-md-2 col-lg-2 smMarginTopM">
+                    <button class=" signBtn2 fontBold" [value]="1" (click)="openPopup($event)">REGISTER</button>
+                </div>
             </div>
         </div>
     </div>
@@ -70,8 +48,8 @@
                     </div>
             <div class="modal-content">
                 <div class="modal-header noPadding">
-                    <ul class="nav nav-pills">
-                        <li class="bRadiusL" [class.active]="viewMode === 'signin'">
+                    <ul class="nav nav-pills bRadiusL">
+                        <li class="" [class.active]="viewMode === 'signin'">
                             <a (click)="setViewMode('signin')">SIGN IN</a>
                         </li>
                         <li  [class.active]="viewMode === 'register'">
@@ -94,6 +72,5 @@
             </div>
         </div>
     </div>
-   
 
 </div>

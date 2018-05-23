@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       lname: ['', [Validators.required, Validators.pattern('^[a-zA-Z .]{1,15}$')]],
       email: ['', [
           Validators.required,
-          Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+          Validators.pattern('[a-zA-Z0-9.-_-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
         ],
         CustomValidations.emailExists(this.service)
       ],

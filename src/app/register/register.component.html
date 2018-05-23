@@ -1,9 +1,9 @@
-<form [formGroup]='form' (ngSubmit)="register()">
+<form [formGroup]='form' (ngSubmit)="register()" class="modalHeight">
 
   <div class="alert alert-danger" *ngIf = "form.errors">Email already Registered...</div>
   <div class="alert alert-success" *ngIf = "formSuccess">Congratulation. You have Successfully Registered... </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding">
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-12 col-sm-6 col-md-6 ">
       <label for="fname">FISRT NAME</label>
       <input type="text" class="form-control" id="fname" maxlength=15 placeholder="First name" formControlName="fname">
       <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
@@ -11,7 +11,7 @@
         <div *ngIf="fname.errors.pattern">Should not contain numeric and special characters</div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-12 col-sm-6 col-md-6 smMarginTopM2">
       <label for="lname">LAST NAME</label>
       <input type="text" class="form-control" id="lname" maxlength=15 placeholder="Last name" formControlName="lname">
       <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid">
