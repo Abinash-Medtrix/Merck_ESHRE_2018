@@ -27,8 +27,12 @@ export class RegisterComponent implements OnInit {
   countries: any[];
   formSuccess = false;
   form: FormGroup;
+  pwdEyeOpen: boolean;
+  cPwdEyeOpen: boolean;
 
   constructor(private service: CountryService, private viewService: ViewModeService, fb: FormBuilder) {
+    this.pwdEyeOpen = false;
+    this.cPwdEyeOpen = false;
     // form Validation...
     this.form = fb.group({
       fname: ['', [Validators.required, Validators.pattern('^[a-zA-Z .]{1,15}$')]],
@@ -40,8 +44,8 @@ export class RegisterComponent implements OnInit {
         CustomValidations.emailExists(this.service)
       ],
       country: ['', Validators.required],
-      newsLetter: ['', Validators.required],
-      terms: ['', Validators.required],
+      newsLetter: ['', [Validators.required, Validators.requiredTrue]],
+      terms: ['', [Validators.required, Validators.requiredTrue]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, passwordConfirming]],
       accesscode: ['', Validators.required, CustomValidations.accessCodeShouldMatch]

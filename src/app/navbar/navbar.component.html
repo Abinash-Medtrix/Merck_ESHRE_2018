@@ -1,27 +1,36 @@
-<div class="container-fluid">
-  <div class="pull-right">
-    Welcome! {{username}}
+<div class="container-fluid logOutBar purpleBg">
+  <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11 text-right ">
+     <span class="whiteColor">Welcome! &nbsp;</span><span class="pinkColor">{{username}}</span>
   </div>
-  <div class="pull-right">
-    Logout
+  <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 logoutBtn">
+      <a (click)="logout()" >Logout</a>
   </div>
 </div>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li routerLinkActive="active">
-        <a routerLink="home">Home</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="speakers">Speaker</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="agenda">Agenda</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="livewebcast">Live Webcast</a>
-      </li>
-    </ul>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+            </button>
+        </div>
+     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+          <li routerLinkActive="active">
+              <a routerLink="home">HOME</a>
+          </li>
+          <li routerLinkActive="active">
+              <a routerLink="speakers">SPEAKERS</a>
+          </li>
+          <li routerLinkActive="active">
+              <a routerLink="agenda">AGENDA</a>
+          </li>
+          <li routerLinkActive="active">
+              <a routerLink="livewebcast">VIEW LIVE WEBCAST</a>
+          </li>
+      </ul>
+    </div>
   </div>
 </nav>
 <router-outlet></router-outlet>

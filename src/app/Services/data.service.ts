@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { AppError } from '../custom/app-error';
 import { NotFoundError } from '../custom/not-found-error';
 import { BadInput } from '../custom/bad-input';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { Token } from '@angular/compiler';
 
 @Injectable()
 export class DataService {
@@ -32,8 +34,18 @@ export class DataService {
     }
 
     authenticateUser(resource) {
+        // tslint:disable-next-line:max-line-length
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21tYW5kIjoiQXV0aGVudGljYXRlVXNlciIsImRhdGEiOnsiZW1haWwiOiJhYmluYXNoLnNAbWVkdHJpeGhlYWx0aGNhcmUuY29tIiwicGFzc3dvcmQiOiJtZWQwMDM4In0sInNlcnZpY2UiOiJVc2VyU2VydmljZSJ9.2fnoX-yoLg8D2llOAfzswAg0i2vAhrhz4wLlnNsiO3Y';
         return this.http.post(this.url, JSON.stringify(resource))
-            .map(response => response.json())
+            .map(response => {
+                const userV = response.json();
+                if (userV.result !== 0) {
+                    localStorage.setItem('token', token);
+                    return true;
+                } else {
+                    return false;
+                }
+            })
             .catch(this.handleError);
     }
 
@@ -49,6 +61,19 @@ export class DataService {
         return this.http.post(this.url, JSON.stringify(resource))
             .map(response => response.json())
             .catch(this.handleError);
+    }
+
+    isLoggedIn() {
+        return tokenNotExpired();
+
+        /* const jwtHelper = new JwtHelper();
+        const token = localStorage.getItem('token');
+        if (!token) {
+            return false;
+        }
+        const expiredDate = jwtHelper.getTokenExpirationDate(token);
+        const isExpired = jwtHelper.isTokenExpired(token);
+        return !isExpired; */
     }
 
     private handleError(error: Response) {

@@ -1,0 +1,32 @@
+.mdMargintop{
+    margin-top: 30px;
+}
+p{
+    color: #522583;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.greenBG {
+    background: #A5D7D5;
+    overflow: auto;
+}
+
+.footerDiv {
+    background: #fff;
+    position: relative;
+    bottom: 0px !important;
+    width: 100%;
+    margin: 30px 0px 0px 0px; 
+}
+
+.mdMarginbtm{
+margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+ .marginTop25{
+     margin-top: 25px;
+ }
+}
+

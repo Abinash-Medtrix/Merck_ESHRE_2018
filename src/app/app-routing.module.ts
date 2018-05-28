@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './Services/auth-guard.service';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
     {
         path: 'landing',
         component: NavbarComponent,
+        canActivate: [AuthGuard],
         children: [
             { path: 'home', component: HomeComponent },
             { path: 'speakers', component: SpeakersComponent },

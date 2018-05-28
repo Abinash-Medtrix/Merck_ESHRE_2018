@@ -1,87 +1,73 @@
 <form [formGroup]='form' (ngSubmit)="register()" class="modalHeight">
 
-  <div class="alert alert-danger" *ngIf = "form.errors">Email already Registered...</div>
-  <div class="alert alert-success" *ngIf = "formSuccess">Congratulation. You have Successfully Registered... </div>
+  <div class="alert alert-danger" *ngIf="form.errors">Email already Registered...</div>
+  <div class="alert alert-success" *ngIf="formSuccess">Congratulation. You have Successfully Registered... </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadding">
-    <div class="col-xs-12 col-sm-6 col-md-6 ">
-      <label for="fname">FISRT NAME</label>
-      <input type="text" class="form-control" id="fname" maxlength=15 placeholder="First name" formControlName="fname">
-      <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
-        <div *ngIf="fname.errors.required">First Name is Required.</div>
-        <div *ngIf="fname.errors.pattern">Should not contain numeric and special characters</div>
+      <div class="col-xs-12 col-sm-6 col-md-6" [class.has-error]="fname.touched && fname.invalid">
+          <label for="fname">FISRT NAME</label>
+          <input type="text" class="form-control" id="fname" maxlength=15 formControlName="fname" [placeholder]=" fname.touched && fname.invalid && fname.errors.required? 'First name is required.*' : 'First Name' ">
+          <!-- <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid && fname.errors.pattern">Should not contain numeric and special characters</div> -->
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 smMarginTopM2">
-      <label for="lname">LAST NAME</label>
-      <input type="text" class="form-control" id="lname" maxlength=15 placeholder="Last name" formControlName="lname">
-      <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid">
-        <div *ngIf="lname.errors.required">Last Name is Required.</div>
-        <div *ngIf="lname.errors.pattern">Should not contain numeric and special characters</div>
+      <div class="col-xs-12 col-sm-6 col-md-6 smMarginTopM2" [class.has-error]="lname.touched && lname.invalid">
+          <label for="lname">LAST NAME</label>
+          <input type="text" class="form-control" id="lname" maxlength=15 formControlName="lname" [placeholder]=" lname.touched && lname.invalid && lname.errors.required? 'Last name is required.*' : 'Last Name' ">
+          <!-- <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid && lname.errors.pattern">Should not contain numeric and special characters</div> -->
       </div>
-    </div>
   </div>
-  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 smMarginTop">
-    <label for="email">EMAIL ADDRESS</label>
-    <input type="text" class="form-control" id="email" placeholder="Email address" formControlName="email">
-    <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-      <div *ngIf="email.errors.required">Email address is Required.</div>
-      <div *ngIf="email.errors.pattern">Invalid email address.</div>
-      <div *ngIf="email.errors.emailAlreadyExists">Email Already taken.</div>
-    </div>
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 smMarginTop" [class.has-error]="email.touched && email.invalid">
+      <label for="email">EMAIL ADDRESS</label>
+      <input type="text" class="form-control" id="email" formControlName="email" [placeholder]=" email.touched && email.invalid && email.errors.required ? 'Email address is required.*' : 'Email address' ">
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid && email.errors.emailAlreadyExists">
+          <!-- <div *ngIf="email.errors.pattern">Invalid email address.</div> -->
+          <div *ngIf="email.errors.emailAlreadyExists">Email Already taken.</div>
+      </div>
   </div>
-  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <label for="">Password</label>
-    <input formControlName="newPassword" type="password" class="form-control">
-    <div *ngIf="newPassword.touched && newPassword.invalid" class="alert alert-danger">
-      <div *ngIf="newPassword.errors.required">New password is required.</div>
-      <div *ngIf="newPassword.errors.minlength">Password should be minimum {{ newPassword.errors.minlength.requiredLength }} characters.</div>
-    </div>
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" [class.has-error]="newPassword.touched && newPassword.invalid">
+      <label for="">Password</label>
+      <input formControlName="newPassword" [type]="pwdEyeOpen ? 'text' : 'password'" class="form-control" [placeholder]=" newPassword.touched && newPassword.invalid && newPassword.errors.required? 'Password is required.*' : 'Password' ">
+      <span class="glyphicon glyphicon-eye-open" *ngIf="newPassword.value !== '' && !pwdEyeOpen" (click)="pwdEyeOpen = true"></span>
+      <span class="glyphicon glyphicon-eye-close" *ngIf="pwdEyeOpen" (click)="pwdEyeOpen = false"></span>
+      <!-- <div *ngIf="newPassword.touched && newPassword.invalid && newPassword.errors.minlength" class="alert alert-danger"> Password should be minimum {{ newPassword.errors.minlength.requiredLength }} characters.</div> -->
   </div>
-  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <label for="">Confirm Password</label>
-    <input formControlName="confirmPassword" type="password" class="form-control">
-    <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="alert alert-danger">
-      <div *ngIf="confirmPassword.errors.required">Confirm password is required.</div>
-      <div *ngIf="confirmPassword.errors.passwordsShouldMatch">Passwords do not match.</div>
-    </div>
-    
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+      <label for="">Confirm Password</label>
+      <input formControlName="confirmPassword" [type]="cPwdEyeOpen ? 'text' : 'password'" class="form-control" [placeholder]=" confirmPassword.touched && confirmPassword.invalid && confirmPassword.errors.required? 'Confirm password is required.*' : 'Confirm Password' ">
+      <span class="glyphicon glyphicon-eye-open" *ngIf="confirmPassword.value !== '' && !cPwdEyeOpen" (click)="cPwdEyeOpen = true"></span>
+      <span class="glyphicon glyphicon-eye-close" *ngIf="cPwdEyeOpen" (click)="cPwdEyeOpen = false"></span>
+      <div *ngIf="confirmPassword.touched && confirmPassword.invalid && confirmPassword.errors.passwordsShouldMatch" class="alert alert-danger"> Passwords do not match. </div>
   </div>
-  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <label for="accesscode">ACCESS CODE</label>
-    <input type="text" class="form-control" id="accesscode" formControlName="accesscode">
-    <div class="alert alert-danger" *ngIf="accesscode.touched && accesscode.invalid">
-      <div *ngIf="accesscode.errors.required">Access Code is Required.</div>
-      <div *ngIf="accesscode.errors.accessCodeShouldMatch">Invalid Access Code.</div>
-    </div>
-    
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" [class.has-error]="accesscode.touched && accesscode.invalid">
+      <label for="accesscode">ACCESS CODE</label>
+      <input type="text" class="form-control" id="accesscode" formControlName="accesscode" [placeholder]=" accesscode.touched && accesscode.invalid && accesscode.errors.required? 'Access Code is Required.*' : 'Access Code' ">
+      <!-- <div class="alert alert-danger" *ngIf="accesscode.touched && accesscode.invalid && accesscode.errors.accessCodeShouldMatch">Invalid Access Code.</div> -->
   </div>
-  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <label for="country">COUNTRY</label>
-    <select name="country" id="country" class="form-control" formControlName="country">
+  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" [class.has-error]="country.touched && country.invalid">
+      <label for="country">COUNTRY</label>
+      <select name="country" id="country" class="form-control" formControlName="country">
       <option value="">Select Country</option>
       <option *ngFor="let cuntry of countries" [value]="cuntry.countryid">{{cuntry.countryname}}</option>
     </select>
-    <div class="alert alert-danger" *ngIf="country.touched && country.invalid">
-      <div *ngIf="country.errors.required">Country is Required.</div>
-    </div>
+      <!-- <div class="alert alert-danger" *ngIf="country.touched && country.invalid">
+          <div *ngIf="country.errors.required">Country is Required.</div>
+      </div> -->
   </div>
-  <div class="checkbox col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <label>
+  <div class="checkbox col-xs-12 col-sm-12 col-md-12 col-lg-12" [class.has-error]="terms.touched && terms.invalid">
+      <label>
       <input type="checkbox" name='terms' formControlName="terms">Please tick here to confirm that you have read and understood our website Terms of Use and Privacy and Cookie Policy
-      <div class="alert alert-danger" *ngIf="terms.touched && terms.invalid">
-        <div *ngIf="terms.errors.required">Terms of Use, Private and Cookie policy is required.</div>
-      </div>
+      <!-- <div class="alert alert-danger" *ngIf="terms.touched && terms.invalid">
+        <div *ngIf="terms.errors.required || terms.errors.requiredTrue">Terms of Use, Private and Cookie policy is required.</div>
+      </div> -->
     </label>
   </div>
-  <div class="checkbox col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <label>
+  <div class="checkbox col-xs-12 col-sm-12 col-md-12 col-lg-12" [class.has-error]="newsLetter.touched && newsLetter.invalid">
+      <label>
       <input type="checkbox" name='newsLetter' formControlName="newsLetter">Please tick here to confirm that you agree to receive newsletter or updates on our products, services or website by
       email
-      <div class="alert alert-danger" *ngIf="newsLetter.touched && newsLetter.invalid">
-        <div *ngIf="newsLetter.errors.required">Agree to receiving newsletter is required.</div>
-      </div>
+      <!-- <div class="alert alert-danger" *ngIf="newsLetter.touched && newsLetter.invalid">
+        <div *ngIf="newsLetter.errors.required || newsLetter.errors.requiredTrue">Agree to receiving newsletter is required.</div>
+      </div> -->
     </label>
   </div>
-    <button type="submit" class="btn btn-primary mobileWidth  smMarginLeft" [disabled]="!form.valid">Register</button>
-  
+  <button type="submit" class="btn btn-primary mobileWidth  smMarginLeft" [disabled]="!form.valid">Register</button>
+  <!-- {{ form.value | json}} -->
 </form>

@@ -22,6 +22,7 @@ import { LivewebcastComponent } from './livewebcast/livewebcast.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './footer/footer.component';
+import { AuthGuard } from './Services/auth-guard.service';
 
 
 @NgModule({
@@ -45,11 +46,12 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     CountryService,
     ViewModeService,
+    AuthGuard,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]
